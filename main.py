@@ -38,6 +38,10 @@ app = Flask(__name__)
 # Load your trained model
 # model = joblib.load("final_model_classification.joblib")
 
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
 
 @app.route('/classify', methods=['POST'])
 def classify_complaint():
