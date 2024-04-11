@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import spacy
 import nltk
 import pickle
@@ -11,30 +12,15 @@ nlp = spacy.load('en_core_web_sm')
 nltk.download('stopwords')
 stpwrd = nltk.corpus.stopwords.words('english')
 
-# lemminf=[]
-# for i in range(len(df)):
-#   words=[]
-#   doc = nlp(df['Reports'].iloc[i])
-#   for token in doc:
-#     if str(token) not in stpwrd:
-#       words.append(token.lemma_)
-#   lemminf.append((" ".join(words)))
-
-# vectorizer = TfidfVectorizer()
-# vectorizer.fit(lemminf)
-
 with open('vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
 with open('model2.pkl', 'rb') as f:
     model = pickle.load(f)
 
-# /print vectorizer output to see the parameters
-
 app = Flask(__name__)
-
-# Load your trained model
-# model = joblib.load("final_model_classification.joblib")
+# allow all origins
+CORS(app, origins='*')
 
 @app.route('/', methods=['GET'])
 def home():
