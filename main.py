@@ -38,7 +38,7 @@ app = Flask(__name__)
 # Load your trained model
 # model = joblib.load("final_model_classification.joblib")
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     return 'Hello, World!'
 
