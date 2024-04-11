@@ -1,16 +1,14 @@
 from flask import Flask, request, jsonify, render_template
-from sklearn.feature_extraction.text import TfidfVectorizer
-import joblib
 import spacy
 import nltk
 import pickle
 import pandas as pd
 from spacy.tokens import Token
-from sklearn.model_selection import train_test_split
 
 Token.set_extension('lemma', default=None)
 nlp = spacy.load('en_core_web_sm')
 
+nltk.download('stopwords')
 stpwrd = nltk.corpus.stopwords.words('english')
 
 # lemminf=[]
