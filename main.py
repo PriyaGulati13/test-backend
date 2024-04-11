@@ -66,4 +66,5 @@ def classify_complaint():
     # Return the classification result
     return jsonify({'prediction': prediction[0]})
 
-app.run()
+if __name__ == '__main__':
+    app.run()
